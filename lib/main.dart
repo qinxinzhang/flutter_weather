@@ -1,24 +1,14 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_weather_app/sample/bloc_provider.dart';
-import 'package:flutter_weather_app/sample/count_page.dart';
+import 'counter/view/counter_page.dart';
+import 'counter_observer.dart';
 
 void main() {
-  runApp(MyApp());
+  Bloc.observer= CounterObserver();
+  runApp(const CounterApp());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: CountPage(),
-      ),
-    );
-  }
+class CounterApp extends MaterialApp {
+  /// {@macro counter_app}
+  const CounterApp({Key key}) : super(key: key, home: const CounterPage());
 }
